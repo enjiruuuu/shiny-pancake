@@ -17,3 +17,8 @@
 .v_loginPage button {
     margin-top: 30px;
 }
+
+.v_loginPage #logo {
+    width: 59px;
+    height: 58.99px;
+}

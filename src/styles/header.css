@@ -1,0 +1,19 @@
+header {
+    -webkit-box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.1); 
+    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.1);
+    padding: 20px 50px;
+}
+
+header #logo {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    left: 50%;
+    right: 50%;
+}
+
+header button.secondary {
+    max-width: 80px;
+    width: 100%;
+    margin-left: auto;
+}

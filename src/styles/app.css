@@ -7,13 +7,6 @@
     box-sizing: border-box;
 }
 
-#logo {
-    width: 59px;
-    height: 58.99px;
-    margin: 0 auto;
-    display: block;
-}
-
 span.error_message {
     color: #EF5944;
     font-weight: 400;
