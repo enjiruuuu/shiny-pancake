@@ -4,7 +4,7 @@ import LoginApi from "../api/LoginApi";
 import InputField from "../components/InputField";
 import InputFieldHelper from "../helpers/InputFieldHelper";
 import { ILoginDetails } from "../models/LoginModel";
-import { InputErrorMessages, LoginErrorMessages } from "../texts";
+import { GenericErrorMessages, InputErrorMessages, LoginErrorMessages } from "../texts";
 import Logo from '../components/Logo';
 import NavigationHelper from '../helpers/Navigator';
 import LoginHelper from '../helpers/LoginHelper';
@@ -33,9 +33,13 @@ const LoginPage = () => {
             password: passwordElm.value,
         }
 
-        loginApi.login(data).then((res: boolean) => {
-            return res ? navigator.dashboard() : setGenericError(LoginErrorMessages.WrongLogin);
-        });
+        loginApi.login(data)
+            .then((res: boolean) => {
+                return res ? navigator.dashboard() : setGenericError(LoginErrorMessages.WrongLogin);
+            })
+            .catch(() => {
+                setGenericError(GenericErrorMessages.SomethingWentWrong);
+            });
     }
 
     function resetStates(): void {
