@@ -1,9 +1,9 @@
 import '../styles/header.css';
 import Logo from "./Logo";
-import Navigator from "../helpers/Navigator";
+import NavigationHelper from '../helpers/Navigator';
 
 const Header = () => {
-    const navigator: Navigator = new Navigator();
+    const navigator: NavigationHelper = new NavigationHelper();
 
     function logout() {
         navigator.logout();

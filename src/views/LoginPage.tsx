@@ -1,12 +1,13 @@
 import '../styles/loginPage.css';
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LoginApi from "../api/LoginApi";
 import InputField from "../components/InputField";
 import InputFieldHelper from "../helpers/InputFieldHelper";
-import Navigator from "../helpers/Navigator";
 import { ILoginDetails } from "../models/LoginModel";
 import { InputErrorMessages, LoginErrorMessages } from "../texts";
 import Logo from '../components/Logo';
+import NavigationHelper from '../helpers/Navigator';
+import LoginHelper from '../helpers/LoginHelper';
 
 const LoginPage = () => {
     const [emailError, setEmailError] = useState<string | null>();
@@ -14,7 +15,7 @@ const LoginPage = () => {
     const [genericError, setGenericError] = useState<string | null>();
 
     const loginApi = new LoginApi();
-    const navigator: Navigator = new Navigator();
+    const navigator: NavigationHelper = new NavigationHelper();
 
     function handleFormSubmit(e: React.FormEvent): void {
         e.preventDefault();
@@ -80,6 +81,12 @@ const LoginPage = () => {
         setPasswordError(null);
         return true;
     }
+
+    useEffect(() => {
+        if (LoginHelper.checkSession()) {
+            navigator.dashboard();
+        }
+    });
 
     return(
         <div className='v_loginPage'>

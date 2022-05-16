@@ -1,6 +1,6 @@
 import { NavigateFunction, useNavigate } from "react-router-dom";
 
-export default class Navigator {
+export default class NavigationHelper {
     private navigate: NavigateFunction = useNavigate();
     private commonNavigator = (path: string) => {
         this.navigate(path, {replace: true});
