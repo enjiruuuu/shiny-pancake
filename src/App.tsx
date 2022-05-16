@@ -1,4 +1,5 @@
-import './App.css';
+import './styles/app.css';
+import './styles/button.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginPage from './views/LoginPage';
 import DashboardPage from './views/DashboardPage';

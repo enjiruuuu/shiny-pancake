@@ -1,3 +1,4 @@
+import '../styles/loginPage.css';
 import React, { useState } from "react";
 import LoginApi from "../api/LoginApi";
 import InputField from "../components/InputField";
@@ -5,6 +6,7 @@ import InputFieldHelper from "../helpers/InputFieldHelper";
 import Navigator from "../helpers/Navigator";
 import { ILoginDetails } from "../models/LoginModel";
 import { InputErrorMessages, LoginErrorMessages } from "../texts";
+import Logo from '../components/Logo';
 
 const LoginPage = () => {
     const [emailError, setEmailError] = useState<string | null>();
@@ -80,12 +82,15 @@ const LoginPage = () => {
     }
 
     return(
-        <form onSubmit={handleFormSubmit} noValidate>
-            <InputField label="Email" type="email" placeholder="Enter your email" required={true} error={emailError}></InputField>
-            <InputField label="Password" type="password" placeholder="Enter your password" required={true} error={passwordError}></InputField>
-            { genericError ? <span className="error_message">{ genericError }</span> : null }
-            <button type="submit">Submit</button>
-        </form>
+        <div className='v_loginPage'>
+            <Logo></Logo>
+            <form onSubmit={handleFormSubmit} noValidate>
+                <InputField label="Email" type="email" placeholder="Enter your email" required={true} error={emailError}></InputField>
+                <InputField label="Password" type="password" placeholder="Enter your password" required={true} error={passwordError}></InputField>
+                { genericError ? <span className="error_message">{ genericError }</span> : null }
+                <button type="submit" className="primary">Submit</button>
+            </form>
+        </div>
     );
 }
 
