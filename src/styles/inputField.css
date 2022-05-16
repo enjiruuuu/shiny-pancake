@@ -19,3 +19,12 @@
 .c_inputField input:focus {
     outline: none;
 }
+
+.c_inputField .error_message {
+    color: #EF5944;
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    margin-top: 6px;
+    display: block;
+}
