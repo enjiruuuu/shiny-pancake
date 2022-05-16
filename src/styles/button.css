@@ -24,3 +24,10 @@ button.secondary {
     font-size: 0.875rem;
     line-height: 1.25rem;
 }
+
+button.tertiary {
+    color: #22C55E;
+    background-color: transparent;
+    width: auto;
+    padding: 0px;
+}
