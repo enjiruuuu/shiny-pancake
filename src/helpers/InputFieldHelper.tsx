@@ -1,4 +1,4 @@
-import { ErrorMessages } from "../texts";
+import { InputErrorMessages } from "../texts";
 
 export default class InputFieldHelper {
     public static checkIfEmpty = (elm: HTMLInputElement): boolean => {
@@ -21,7 +21,7 @@ export default class InputFieldHelper {
         switch(type) {
             case 'email':
                 if (!/^\S+@\S+\.\S+$/.test(value)) {
-                    return ErrorMessages.WrongFormatEmail;
+                    return InputErrorMessages.WrongFormatEmail;
                 }
                 return null;
 
