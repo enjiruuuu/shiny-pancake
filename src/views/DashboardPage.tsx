@@ -1,4 +1,5 @@
-import { ReactNode, useEffect, useMemo, useState } from "react";
+import '../styles/dashboard.css';
+import { useEffect, useState } from "react";
 import TripApi from "../api/TripApi";
 import Header from "../components/Header";
 import Trip from "../components/Trip";
@@ -7,6 +8,7 @@ import LoginHelper from "../helpers/LoginHelper";
 import NavigationHelper from "../helpers/Navigator";
 import Constants from "../models/Constants";
 import { ITripData } from "../models/TripModel";
+import PlusIcon from '../components/icons/PlusIcon';
 
 const DashboardPage = () => {
     const navigator: NavigationHelper = new NavigationHelper();
@@ -31,11 +33,11 @@ const DashboardPage = () => {
             <main>
                 <h1>Hello, {userName}! 👋</h1>
                 <div>
-                    <div>
+                    <div className='dashboard_header'>
                         <h2>Your trips</h2>
-                        <button className="tertiary">Create new trip</button>
+                        <button className="tertiary"><span>Create new trip</span><PlusIcon></PlusIcon></button>
                     </div>
-                    <ul>
+                    <ul className="c_trips">
                         <>
                         {
                             trips.map(({ city, name, endDate, startDate, tripUuid }) => (

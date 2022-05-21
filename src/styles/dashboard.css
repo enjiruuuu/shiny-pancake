@@ -1,0 +1,26 @@
+main {
+    padding: 48px 150px 0px 150px;
+}
+
+.dashboard_header {
+    margin-top: 55px;
+    margin-bottom: 30px;
+    display: flex;
+}
+
+.dashboard_header button {
+    margin-left: auto;
+}
+
+.dashboard_header i {
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 3px;
+    margin-left: 8px;
+}
+
+.c_trips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}

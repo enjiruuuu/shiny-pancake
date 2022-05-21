@@ -1,0 +1,34 @@
+.c_trip {
+    width: calc(33.33% - 20px);
+    background-color: #f00;
+    border-radius: 8px;
+    padding-top: 221px;
+    position: relative;
+    cursor: pointer;
+}
+
+.c_trip h4 {
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+
+.c_trip .sub_info {
+    margin-top: 5px;
+}
+
+.c_trip .sub_info * {
+    font-size: 0.75rem;
+    line-height: 1.125rem;
+    font-weight: 400;
+    display: block;
+}
+
+.c_trip > div {
+    position: absolute;
+    left: 30px;
+    bottom: 20px;
+    width: calc(100% - 60px);
+}
+
+.c_trip .city {display: block;}
