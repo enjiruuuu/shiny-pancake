@@ -33,16 +33,24 @@ const DashboardPage = () => {
             <main>
                 <h1>Hello, {userName}! 👋</h1>
                 <div>
-                    <div className='dashboard_header'>
-                        <h2>Your trips</h2>
-                        <button className="tertiary"><span>Create new trip</span><PlusIcon></PlusIcon></button>
-                    </div>
+                    {trips.length > 0 &&
+                        <div className='dashboard_header'>
+                            <h2>Your trips</h2>
+                            <button className="tertiary"><span>Create new trip</span><PlusIcon></PlusIcon></button>
+                        </div>
+                    }
                     <ul className="c_trips">
                         <>
-                        {
+                        {trips.length > 0 &&
                             trips.map(({ city, name, endDate, startDate, tripUuid }) => (
                                 <Trip key={tripUuid} name={name} city={city} startDate={startDate} endDate={endDate}></Trip>
                             ))
+                        }
+                        {trips.length === 0 &&
+                            <div className='empty_trip_container'>
+                                 <h2>You do not have any trips yet</h2>
+                                <button className="primary">Create new trip</button>
+                            </div>
                         }
                         </>
                     </ul>
