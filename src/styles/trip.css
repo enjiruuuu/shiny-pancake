@@ -7,10 +7,21 @@
     cursor: pointer;
 }
 
+.c_trip .background {
+    background: linear-gradient(180deg, rgba(102, 102, 102, 0) 0%, #222222 100%);
+    height: 113px;
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    border-radius: 0 0px 8px 8px;
+}
+
 .c_trip h4 {
     font-weight: 600;
     font-size: 1rem;
     line-height: 1.5rem;
+    color: #F0FDF4;
 }
 
 .c_trip .sub_info {
@@ -22,6 +33,7 @@
     line-height: 1.125rem;
     font-weight: 400;
     display: block;
+    color: #F0FDF4;
 }
 
 .c_trip > div {

@@ -5,6 +5,7 @@ import { ITripData } from "../models/TripModel";
 const Trip: React.FC<ITripData> = (props: any) => {
     return(
         <li className="c_trip">
+            <div className='background'></div>
             <div>
                 <h4>{props.name ? props.name : props.city}</h4>
                 <div className="sub_info">
