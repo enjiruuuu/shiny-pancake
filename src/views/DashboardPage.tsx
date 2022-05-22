@@ -9,12 +9,14 @@ import NavigationHelper from "../helpers/Navigator";
 import Constants from "../models/Constants";
 import { ITripData } from "../models/TripModel";
 import PlusIcon from '../components/icons/PlusIcon';
+import Overlay from '../components/Overlay';
 
 const DashboardPage = () => {
     const navigator: NavigationHelper = new NavigationHelper();
     const userName: string = window.sessionStorage.getItem(Constants.namespace + '_userName') as string;
 
     const [trips, setTrips] = useState<ITripData[]>([]);
+    const [isCreatingNewTrip, setIsCreatingNewTrip] = useState<boolean>(false);
 
     useEffect(() => {
         if (!LoginHelper.checkSession()) {
@@ -27,6 +29,10 @@ const DashboardPage = () => {
         });
     }, []);
 
+    const openNewTrip = (): void => {
+        setIsCreatingNewTrip(true);
+    }
+
     return (
         <Wrapper>
             <Header></Header>
@@ -36,7 +42,7 @@ const DashboardPage = () => {
                     {trips.length > 0 &&
                         <div className='dashboard_header'>
                             <h2>Your trips</h2>
-                            <button className="tertiary"><span>Create new trip</span><PlusIcon></PlusIcon></button>
+                            <button className="tertiary" onClick={openNewTrip}><span>Create new trip</span><PlusIcon></PlusIcon></button>
                         </div>
                     }
                     <ul className="c_trips">
@@ -56,6 +62,8 @@ const DashboardPage = () => {
                     </ul>
                 </div>
             </main>
+
+            {isCreatingNewTrip ? <Overlay></Overlay> : null}
         </Wrapper>
     );
 }
