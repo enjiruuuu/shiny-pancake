@@ -10,6 +10,7 @@ import Constants from "../models/Constants";
 import { ITripData } from "../models/TripModel";
 import PlusIcon from '../components/icons/PlusIcon';
 import Overlay from '../components/Overlay';
+import NewTrip from '../components/NewTrip';
 
 const DashboardPage = () => {
     const navigator: NavigationHelper = new NavigationHelper();
@@ -31,6 +32,10 @@ const DashboardPage = () => {
 
     const openNewTrip = (): void => {
         setIsCreatingNewTrip(true);
+    }
+
+    const closeNewTrip = (): void => {
+        setIsCreatingNewTrip(false);
     }
 
     return (
@@ -63,7 +68,14 @@ const DashboardPage = () => {
                 </div>
             </main>
 
-            {isCreatingNewTrip ? <Overlay></Overlay> : null}
+            {
+                isCreatingNewTrip ? 
+                    <Wrapper>
+                        <Overlay></Overlay>
+                        <NewTrip parentCallback = { closeNewTrip }></NewTrip>
+                    </Wrapper>
+                : null
+            }
         </Wrapper>
     );
 }
