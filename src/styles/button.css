@@ -31,3 +31,10 @@ button.tertiary {
     width: auto;
     padding: 0px;
 }
+
+button.icon {
+    color: transparent;
+    background-color: transparent;
+    width: auto;
+    padding: 0px;
+}
