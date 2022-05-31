@@ -4,10 +4,8 @@ import { HttpStatusCodes } from "../models/Generic";
 import { ILoginDetails, ILoginResponse } from "../models/LoginModel";
 
 export default class LoginApi {
-    private baseUrl: string = 'http://127.0.0.1:5000';
-
     public async login(data: ILoginDetails): Promise<boolean> {
-        const res = await axios.get(this.baseUrl + '/login', {
+        const res = await axios.get(Constants.baseUrl + '/login', {
             params: data
         });
 
