@@ -1,3 +1,4 @@
+import '../styles/newTrip.css';
 import { useState } from "react";
 import Card from "./Card";
 import Datepicker from "./Datepicker";
@@ -45,7 +46,8 @@ const NewTrip: React.FC<any> = (props) => {
     }
 
     return (
-        <Card>
+        <div className="v_newTrip">
+            <Card>
             <div className="card_header">
                 <h2>Create new trip  🎉</h2>
                 <button className="icon" onClick={closeCard}><CloseIcon></CloseIcon></button>
@@ -59,6 +61,7 @@ const NewTrip: React.FC<any> = (props) => {
                 <button type="submit" className="primary">Submit</button>
             </form>
         </Card>
+        </div>
     );
 };
 

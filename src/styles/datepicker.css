@@ -1,0 +1,30 @@
+.c_datePicker label {
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5rem;
+    color: #333F51;
+    display: block;
+    width: 100%;
+}
+
+.c_datePicker input {
+    border: 1px solid #D5DAE1;
+    color: #667085;
+    border-radius: 8px;
+    width: 100%;
+    padding: 10px 14px;
+    margin-top: 6px;
+}
+
+.c_datePicker input:focus {
+    outline: none;
+}
+
+.c_datePicker .error_message {
+    color: #EF5944;
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    margin-top: 6px;
+    display: block;
+}

@@ -1,5 +1,5 @@
 import { IDatePicker } from "../models/InputFieldModel";
-import '../styles/inputField.css';
+import '../styles/datepicker.css';
 
 const Datepicker: React.FC<IDatePicker> = (props) => {
     const getToday = (): string => {
