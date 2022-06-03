@@ -9,4 +9,15 @@
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
+    padding: 30px;
+}
+
+.c_card .card_header {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.c_card .card_header button {
+    margin-left: auto;
 }
