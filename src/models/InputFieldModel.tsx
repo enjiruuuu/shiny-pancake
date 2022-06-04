@@ -9,11 +9,13 @@ export interface IInputField {
     required?: boolean,
     onChange?: ChangeEventHandler,
     error?: string | null,
+    id?: string,
 }
 
 export interface IDatePicker {
     label: string,
     required?: boolean,
     onChange?: ChangeEventHandler,
-    error?: string | null
+    error?: string | null,
+    id?: string,
 }

@@ -16,7 +16,7 @@ export default class LoginApi {
             return true;
         }
         else {
-            return false;
+            throw new Error();
         }
     }
 }
