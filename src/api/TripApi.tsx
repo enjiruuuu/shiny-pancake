@@ -1,7 +1,7 @@
 import axios from "axios";
 import Constants from "../models/Constants";
 import { HttpStatusCodes } from "../models/Generic";
-import { ITripData, ITripResponse } from "../models/TripModel";
+import { IAddTripResponse, ITripData, ITripDetails, ITripResponse } from "../models/TripModel";
 
 export default class TripApi {
     public async getTripsByUserUuid(userUuid: string): Promise<ITripData[]> {
@@ -13,5 +13,17 @@ export default class TripApi {
         }
 
         return [];
+    }
+
+    public async addTrip(data: ITripDetails): Promise<boolean> {
+        const res = await axios.put(Constants.baseUrl + '/trips/create', data);
+        const response: IAddTripResponse = res.data;
+
+        if (response.httpStatusCode === HttpStatusCodes.SUCCESS) {
+            return true;
+        }
+        else {
+            throw new Error();
+        }
     }
 }

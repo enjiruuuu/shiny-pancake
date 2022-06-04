@@ -4,14 +4,20 @@ import Card from "./Card";
 import Datepicker from "./Datepicker";
 import CloseIcon from "./icons/CloseIcon";
 import InputField from "./InputField";
-
-// TODO: refactor to follow LoginPage structure and method
+import InputFieldHelper from '../helpers/InputFieldHelper';
+import { GenericErrorMessages, GenericSuccessMessages, InputErrorMessages } from '../texts';
+import { ITripDetails } from '../models/TripModel';
+import Constants from '../models/Constants';
+import TripApi from '../api/TripApi';
 
 const NewTrip: React.FC<any> = (props) => {
-    const [destinationInput, setDestinationInput] = useState<string | undefined>(undefined);
-    const [tripTitleInput, setTripTitleInput] = useState<string | undefined>(undefined);
-    const [startDateInput, setStartDateInput] = useState<string | undefined>(undefined);
-    const [endDateInput, setEndDateInput] = useState<string | undefined>(undefined);
+    const tripApi = new TripApi();
+
+    const [destinationError, setDestinationError] = useState<string | null>();
+    const [startDateError, setStartDateError] = useState<string | null>();
+    const [endDateError, setEndDateError] = useState<string | null>();
+    const [genericError, setGenericError] = useState<string | null>();
+    const [successMessage, setSuccessMessage] = useState<string | null>();
 
     const closeCard = (): void => {
         props.parentCallback();
@@ -19,30 +25,90 @@ const NewTrip: React.FC<any> = (props) => {
 
     const createNewTrip = (e: React.FormEvent): void => {
         e.preventDefault();
+        resetStates();
+        
+        if(!validateFields()) {
+            return;
+        }
+
+        const destinationElm: HTMLInputElement = document.querySelector('#f_destination') as HTMLInputElement;
+        const titleElm: HTMLInputElement = document.querySelector('#f_tripTitle') as HTMLInputElement;
+        const startDateElm: HTMLInputElement = document.querySelector('#f_startDate') as HTMLInputElement;
+        const endDateElm: HTMLInputElement = document.querySelector('#f_endDate') as HTMLInputElement;
+
+        const data: ITripDetails = {
+            ownerUuid: Constants.userUuid as string,
+            city: destinationElm.value,
+            name: titleElm.value,
+            endDate: endDateElm.value,
+            startDate: startDateElm.value,
+        }
+        
+        tripApi.addTrip(data)
+            .then((res: boolean) => {
+                setSuccessMessage(GenericSuccessMessages.TripAdded);
+                setTimeout(() => {
+                    resetStates();
+                    closeCard();
+                }, 1000);
+                props.refreshTrip();
+            })
+            .catch(() => {
+                setGenericError(GenericErrorMessages.SomethingWentWrong);
+            });
     }
 
     const validateFields = (): boolean => {
-        if (!destinationInput || !startDateInput || !endDateInput) {
+        const validatedDestination: boolean = validateDestination();
+        const validatedStartDate: boolean = validateStartDate();
+        const validatedEndDate: boolean = validateEndDate();
+
+        if (!validatedDestination  || !validatedStartDate || !validatedEndDate) {
             return false;
         }
 
         return true;
     }
 
-    const setDestinationValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setDestinationInput(e.target.value);
+    function resetStates(): void {
+        setDestinationError(null);
+        setStartDateError(null);
+        setEndDateError(null);
+        setGenericError(null);
+        setSuccessMessage(null);
     }
 
-    const setTripTitleValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setTripTitleInput(e.target.value);
+    function validateDestination(): boolean {
+        const elm: HTMLInputElement = document.querySelector('#f_destination') as HTMLInputElement;
+        if (InputFieldHelper.checkIfEmpty(elm)) {
+            setDestinationError(InputErrorMessages.FieldEmpty);
+            return false;
+        }
+
+        setDestinationError(null);
+        return true;
     }
 
-    const setStartDateValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setStartDateInput(e.target.value);
+    function validateStartDate(): boolean {
+        const elm: HTMLInputElement = document.querySelector('#f_startDate') as HTMLInputElement;
+        if (InputFieldHelper.checkIfEmpty(elm)) {
+            setStartDateError(InputErrorMessages.FieldEmpty);
+            return false;
+        }
+
+        setStartDateError(null);
+        return true;
     }
 
-    const setEndDateValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setEndDateInput(e.target.value);
+    function validateEndDate(): boolean {
+        const elm: HTMLInputElement = document.querySelector('#f_endDate') as HTMLInputElement;
+        if (InputFieldHelper.checkIfEmpty(elm)) {
+            setEndDateError(InputErrorMessages.FieldEmpty);
+            return false;
+        }
+
+        setEndDateError(null);
+        return true;
     }
 
     return (
@@ -54,10 +120,12 @@ const NewTrip: React.FC<any> = (props) => {
             </div>
 
             <form onSubmit={createNewTrip} noValidate>
-                <InputField label="Destination" type="text" placeholder="Start typing here..." required={true} onChange={setDestinationValue}></InputField>
-                <InputField label="Custom trip title (optional)" type="text" placeholder="Type here" onChange={setTripTitleValue}></InputField>
-                <Datepicker label="Start date" required={true} onChange={setStartDateValue}></Datepicker>
-                <Datepicker label="End date" required={true} onChange={setEndDateValue}></Datepicker>
+                <InputField id="f_destination" label="Destination" type="text" placeholder="Start typing here..." required={true} error={destinationError}></InputField>
+                <InputField id="f_tripTitle" label="Custom trip title (optional)" type="text" placeholder="Type here"></InputField>
+                <Datepicker id="f_startDate" label="Start date" required={true} error={startDateError}></Datepicker>
+                <Datepicker id="f_endDate" label="End date" required={true} error={endDateError}></Datepicker>
+                { genericError ? <span className="error_message">{ genericError }</span> : null }
+                { successMessage ? <span className="success_message">{ successMessage }</span> : null }
                 <button type="submit" className="primary">Submit</button>
             </form>
         </Card>

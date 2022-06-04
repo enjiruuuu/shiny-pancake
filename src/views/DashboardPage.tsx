@@ -14,6 +14,7 @@ import NewTrip from '../components/NewTrip';
 
 const DashboardPage = () => {
     const navigator: NavigationHelper = new NavigationHelper();
+    const tripApi: TripApi = new TripApi();
     const userName: string = window.sessionStorage.getItem(Constants.namespace + '_userName') as string;
 
     const [trips, setTrips] = useState<ITripData[]>([]);
@@ -24,7 +25,6 @@ const DashboardPage = () => {
             return navigator.logout();
         }
 
-        const tripApi: TripApi = new TripApi();
         tripApi.getTripsByUserUuid(Constants.userUuid).then((res: ITripData[]) => {
             setTrips(res);
         });
@@ -36,6 +36,12 @@ const DashboardPage = () => {
 
     const closeNewTrip = (): void => {
         setIsCreatingNewTrip(false);
+    }
+
+    const refreshTrip = ():void => {
+        tripApi.getTripsByUserUuid(Constants.userUuid).then((res: ITripData[]) => {
+            setTrips(res);
+        });
     }
 
     return (
@@ -60,7 +66,7 @@ const DashboardPage = () => {
                         {trips.length === 0 &&
                             <div className='empty_trip_container'>
                                  <h2>You do not have any trips yet</h2>
-                                <button className="primary">Create new trip</button>
+                                <button className="primary" onClick={openNewTrip}>Create new trip</button>
                             </div>
                         }
                         </>
@@ -72,7 +78,7 @@ const DashboardPage = () => {
                 isCreatingNewTrip ? 
                     <Wrapper>
                         <Overlay></Overlay>
-                        <NewTrip parentCallback = { closeNewTrip }></NewTrip>
+                        <NewTrip parentCallback = { closeNewTrip } refreshTrip = { refreshTrip }></NewTrip>
                     </Wrapper>
                 : null
             }

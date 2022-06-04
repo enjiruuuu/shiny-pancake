@@ -20,6 +20,15 @@ span.error_message {
     display: block;
 }
 
+span.success_message {
+    color: #22C55E;
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    margin-top: 6px;
+    display: block;
+}
+
 h1 {
     font-weight: 600;
     color: #101828;
