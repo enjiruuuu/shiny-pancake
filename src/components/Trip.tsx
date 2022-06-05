@@ -1,10 +1,20 @@
 import '../styles/trip.css';
 import GenericHelper from "../helpers/GenericHelper";
 import { ITripData } from "../models/TripModel";
+import { Countries } from '../countries';
+import { useEffect, useState } from 'react';
 
 const Trip: React.FC<ITripData> = (props: any) => {
+    const [backgroundImage, setBackgroundImage] = useState('');
+    
+    useEffect(() => {
+        if (backgroundImage === '') {
+            setBackgroundImage(Countries[props.city].image);
+        }
+    },[backgroundImage, props.city]);
+
     return(
-        <li className="c_trip">
+        <li className="c_trip" style={{backgroundImage: 'url('+ backgroundImage +')'}}>
             <div className='background'></div>
             <div>
                 <h4>{props.name ? props.name : props.city}</h4>
