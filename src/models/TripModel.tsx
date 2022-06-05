@@ -24,3 +24,13 @@ export interface ITripDetails {
     endDate: string;
     startDate: string;
 }
+
+export interface ICountriesData {
+    country: string;
+    city: string;
+    image: string;
+}
+
+export interface ICountriesObject {
+    [key: string]: ICountriesData
+}
