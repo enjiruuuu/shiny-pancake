@@ -6,6 +6,11 @@ export const Countries: ICountriesObject = {
         city: "Bali",
         image: "https://a.cdn-hotels.com/gdcs/production143/d1112/c4fedab1-4041-4db5-9245-97439472cf2c.jpg"
     },
+    "Hawaii": {
+        country: "United States of America",
+        city: "Hawaii",
+        image: "https://www.planetware.com/wpimages/2019/12/hawaii-in-pictures-beautiful-places-to-photograph-hanauma-bay-oahu.jpg"
+    },
     "Kuala Lumpur": {
         country: "Malaysia",
         city: "Kuala Lumpur",
