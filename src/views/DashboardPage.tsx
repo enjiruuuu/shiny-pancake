@@ -60,7 +60,7 @@ const DashboardPage = () => {
                         <>
                         {trips.length > 0 &&
                             trips.map(({ city, name, endDate, startDate, tripUuid }) => (
-                                <Trip key={tripUuid} name={name} city={city} startDate={startDate} endDate={endDate}></Trip>
+                                <Trip key={tripUuid} name={name} city={city} startDate={startDate} endDate={endDate} tripUuid={tripUuid}></Trip>
                             ))
                         }
                         {trips.length === 0 &&

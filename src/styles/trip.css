@@ -1,7 +1,7 @@
 .c_trip {
     width: calc(33.33% - 20px);
     border-radius: 8px;
-    padding-top: 221px;
+    padding-top: 300px;
     position: relative;
     cursor: pointer;
     background-position: center center;

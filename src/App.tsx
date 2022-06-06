@@ -3,6 +3,7 @@ import './styles/button.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginPage from './views/LoginPage';
 import DashboardPage from './views/DashboardPage';
+import TripDetails from './views/TripDetails';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LoginPage />}></Route>
           <Route path="/dashboard" element={<DashboardPage />}></Route>
+          <Route path="/trip/:id" element={<TripDetails />}></Route>
         </Routes>
       </BrowserRouter>
     </div>
