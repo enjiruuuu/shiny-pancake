@@ -3,9 +3,11 @@ import GenericHelper from "../helpers/GenericHelper";
 import { ITripData } from "../models/TripModel";
 import { Countries } from '../countries';
 import { useEffect, useState } from 'react';
+import NavigationHelper from '../helpers/Navigator';
 
 const Trip: React.FC<ITripData> = (props: any) => {
     const [backgroundImage, setBackgroundImage] = useState('');
+    const navigator: NavigationHelper = new NavigationHelper();
     
     useEffect(() => {
         if (backgroundImage === '') {
@@ -13,8 +15,12 @@ const Trip: React.FC<ITripData> = (props: any) => {
         }
     },[backgroundImage, props.city]);
 
+    function navigateToTripDetails(): void {
+        navigator.tripDetails(props.tripUuid);
+    }
+
     return(
-        <li className="c_trip" style={{backgroundImage: 'url('+ backgroundImage +')'}}>
+        <li className="c_trip" style={{backgroundImage: 'url('+ backgroundImage +')'}} onClick={navigateToTripDetails}>
             <div className='background'></div>
             <div>
                 <h4>{props.name ? props.name : props.city}</h4>

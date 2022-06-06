@@ -11,6 +11,10 @@ export default class NavigationHelper {
         this.commonNavigator('/dashboard');
     }
 
+    public tripDetails = (tripUuid: string) => {
+        this.commonNavigator('/trip/' + tripUuid);
+    }
+
     public logout = () => {
         window.sessionStorage.removeItem(Constants.namespace + '_userUuid');
         window.sessionStorage.removeItem(Constants.namespace + '_userName');
