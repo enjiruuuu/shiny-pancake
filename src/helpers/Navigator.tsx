@@ -16,8 +16,8 @@ export default class NavigationHelper {
     }
 
     public logout = () => {
-        window.sessionStorage.removeItem(Constants.namespace + '_userUuid');
-        window.sessionStorage.removeItem(Constants.namespace + '_userName');
+        window.localStorage.removeItem(Constants.namespace + '_userUuid');
+        window.localStorage.removeItem(Constants.namespace + '_userName');
         this.commonNavigator('/');
     }
 }
