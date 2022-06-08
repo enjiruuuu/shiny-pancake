@@ -11,8 +11,10 @@ export default class LoginApi {
 
         const response: ILoginResponse = res.data;
         if (response.httpStatusCode === HttpStatusCodes.SUCCESS) {
-            window.sessionStorage.setItem(Constants.namespace + '_userUuid', response.data?.uuid as string);
-            window.sessionStorage.setItem(Constants.namespace + '_userName', response.data?.name as string);
+            window.localStorage.setItem(Constants.namespace + '_userUuid', response.data?.uuid as string);
+            window.localStorage.setItem(Constants.namespace + '_userName', response.data?.name as string);
+            Constants.userUuid = window.localStorage.getItem(Constants.namespace + '_userUuid') as string;
+            
             return true;
         }
         else {

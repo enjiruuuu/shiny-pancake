@@ -15,7 +15,7 @@ import NewTrip from '../components/NewTrip';
 const DashboardPage = () => {
     const navigator: NavigationHelper = new NavigationHelper();
     const tripApi: TripApi = new TripApi();
-    const userName: string = window.sessionStorage.getItem(Constants.namespace + '_userName') as string;
+    const userName: string = window.localStorage.getItem(Constants.namespace + '_userName') as string;
 
     const [trips, setTrips] = useState<ITripData[]>([]);
     const [isCreatingNewTrip, setIsCreatingNewTrip] = useState<boolean>(false);
