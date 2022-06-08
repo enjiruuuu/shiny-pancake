@@ -1,6 +1,10 @@
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import Constants from "../models/Constants";
 
+export class NavigationRoutes {
+    public static dashboard: string = '/dashboard';
+}
+
 export default class NavigationHelper {
     private navigate: NavigateFunction = useNavigate();
     private commonNavigator = (path: string) => {
@@ -8,7 +12,7 @@ export default class NavigationHelper {
     }
 
     public dashboard = () => {
-        this.commonNavigator('/dashboard');
+        this.commonNavigator(NavigationRoutes.dashboard);
     }
 
     public tripDetails = (tripUuid: string) => {
