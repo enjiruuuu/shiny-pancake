@@ -1,4 +1,4 @@
-import Constants from "../models/Constants"
+import Constants from '../models/Constants';
 
 export default class LoginHelper {
     public static checkSession = (): boolean => {
@@ -7,5 +7,5 @@ export default class LoginHelper {
         }
 
         return false;
-    }
+    };
 }

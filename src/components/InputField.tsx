@@ -1,4 +1,4 @@
-import { IInputField } from "../models/InputFieldModel";
+import { IInputField } from '../models/InputFieldModel';
 import '../styles/inputField.css';
 
 const InputField: React.FC<IInputField> = (props) => {

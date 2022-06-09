@@ -1,7 +1,7 @@
-import axios from "axios";
-import Constants from "../models/Constants";
-import { HttpStatusCodes } from "../models/Generic";
-import { ILoginDetails, ILoginResponse } from "../models/LoginModel";
+import axios from 'axios';
+import Constants from '../models/Constants';
+import { HttpStatusCodes } from '../models/Generic';
+import { ILoginDetails, ILoginResponse } from '../models/LoginModel';
 
 export default class LoginApi {
     public async login(data: ILoginDetails): Promise<boolean> {

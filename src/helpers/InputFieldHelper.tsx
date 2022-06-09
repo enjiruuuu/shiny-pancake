@@ -1,4 +1,4 @@
-import { InputErrorMessages } from "../texts";
+import { InputErrorMessages } from '../texts';
 
 export default class InputFieldHelper {
     public static checkIfEmpty = (elm: HTMLInputElement): boolean => {
@@ -7,12 +7,12 @@ export default class InputFieldHelper {
         }
  
         return false;
-    }
+    };
 
     public static validateEmail = (elm: HTMLInputElement): boolean => {
         const value = elm.value.trim();
         return /^\S+@\S+\.\S+$/.test(value);
-    }
+    };
 
     public static isInputValidFormat = (elm: HTMLInputElement): string | null => {
         const type: string = elm.type;
@@ -28,5 +28,5 @@ export default class InputFieldHelper {
             default:
                 return null;
         }
-    }
+    };
 }

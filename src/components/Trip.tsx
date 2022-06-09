@@ -1,6 +1,6 @@
 import '../styles/trip.css';
-import GenericHelper from "../helpers/GenericHelper";
-import { ITripData } from "../models/TripModel";
+import GenericHelper from '../helpers/GenericHelper';
+import { ITripData } from '../models/TripModel';
 import { Countries } from '../countries';
 import { useEffect, useState } from 'react';
 import NavigationHelper from '../helpers/Navigator';
@@ -31,6 +31,6 @@ const Trip: React.FC<ITripData> = (props: any) => {
             </div>
         </li>
     );
-}
+};
 
 export default Trip;

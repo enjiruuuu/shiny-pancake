@@ -1,11 +1,11 @@
-import { IDatePicker } from "../models/InputFieldModel";
+import { IDatePicker } from '../models/InputFieldModel';
 import '../styles/datepicker.css';
 
 const Datepicker: React.FC<IDatePicker> = (props) => {
     const getToday = (): string => {
         const today: Date = new Date();
         return today.toLocaleDateString('en-SG');
-    }
+    };
 
     return (
         <div className="c_datePicker">
