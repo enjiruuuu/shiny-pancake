@@ -1,10 +1,10 @@
 import '../styles/loginPage.css';
-import React, { useEffect, useState } from "react";
-import LoginApi from "../api/LoginApi";
-import InputField from "../components/InputField";
-import InputFieldHelper from "../helpers/InputFieldHelper";
-import { ILoginDetails } from "../models/LoginModel";
-import { GenericErrorMessages, InputErrorMessages, LoginErrorMessages } from "../texts";
+import React, { useEffect, useState } from 'react';
+import LoginApi from '../api/LoginApi';
+import InputField from '../components/InputField';
+import InputFieldHelper from '../helpers/InputFieldHelper';
+import { ILoginDetails } from '../models/LoginModel';
+import { GenericErrorMessages, InputErrorMessages, LoginErrorMessages } from '../texts';
 import Logo from '../components/Logo';
 import NavigationHelper from '../helpers/Navigator';
 import LoginHelper from '../helpers/LoginHelper';
@@ -31,7 +31,7 @@ const LoginPage = () => {
         const data: ILoginDetails = {
             email: emailElm.value,
             password: passwordElm.value,
-        }
+        };
 
         loginApi.login(data)
             .then((res: boolean) => {
@@ -103,6 +103,6 @@ const LoginPage = () => {
             </form>
         </div>
     );
-}
+};
 
 export default LoginPage;

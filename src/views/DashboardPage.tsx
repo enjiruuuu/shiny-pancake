@@ -1,13 +1,13 @@
 import '../styles/dashboard.css';
-import { useEffect, useState } from "react";
-import TripApi from "../api/TripApi";
-import Header from "../components/Header";
-import Trip from "../components/Trip";
-import Wrapper from "../components/Wrapper";
-import LoginHelper from "../helpers/LoginHelper";
-import NavigationHelper from "../helpers/Navigator";
-import Constants from "../models/Constants";
-import { ITripData } from "../models/TripModel";
+import { useEffect, useState } from 'react';
+import TripApi from '../api/TripApi';
+import Header from '../components/Header';
+import Trip from '../components/Trip';
+import Wrapper from '../components/Wrapper';
+import LoginHelper from '../helpers/LoginHelper';
+import NavigationHelper from '../helpers/Navigator';
+import Constants from '../models/Constants';
+import { ITripData } from '../models/TripModel';
 import PlusIcon from '../components/icons/PlusIcon';
 import Overlay from '../components/Overlay';
 import NewTrip from '../components/NewTrip';
@@ -32,17 +32,17 @@ const DashboardPage = () => {
 
     const openNewTrip = (): void => {
         setIsCreatingNewTrip(true);
-    }
+    };
 
     const closeNewTrip = (): void => {
         setIsCreatingNewTrip(false);
-    }
+    };
 
     const refreshTrip = ():void => {
         tripApi.getTripsByUserUuid(Constants.userUuid).then((res: ITripData[]) => {
             setTrips(res);
         });
-    }
+    };
 
     return (
         <Wrapper>
@@ -84,6 +84,6 @@ const DashboardPage = () => {
             }
         </Wrapper>
     );
-}
+};
 
 export default DashboardPage;

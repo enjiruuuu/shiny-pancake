@@ -1,9 +1,9 @@
 import '../styles/newTrip.css';
-import { useState } from "react";
-import Card from "./Card";
-import Datepicker from "./Datepicker";
-import CloseIcon from "./icons/CloseIcon";
-import InputField from "./InputField";
+import { useState } from 'react';
+import Card from './Card';
+import Datepicker from './Datepicker';
+import CloseIcon from './icons/CloseIcon';
+import InputField from './InputField';
 import InputFieldHelper from '../helpers/InputFieldHelper';
 import { GenericErrorMessages, GenericSuccessMessages, InputErrorMessages } from '../texts';
 import { ITripDetails } from '../models/TripModel';
@@ -21,7 +21,7 @@ const NewTrip: React.FC<any> = (props) => {
 
     const closeCard = (): void => {
         props.parentCallback();
-    }
+    };
 
     const createNewTrip = (e: React.FormEvent): void => {
         e.preventDefault();
@@ -42,7 +42,7 @@ const NewTrip: React.FC<any> = (props) => {
             name: titleElm.value,
             endDate: endDateElm.value,
             startDate: startDateElm.value,
-        }
+        };
         
         tripApi.addTrip(data)
             .then((res: boolean) => {
@@ -56,7 +56,7 @@ const NewTrip: React.FC<any> = (props) => {
             .catch(() => {
                 setGenericError(GenericErrorMessages.SomethingWentWrong);
             });
-    }
+    };
 
     const validateFields = (): boolean => {
         const validatedDestination: boolean = validateDestination();
@@ -68,7 +68,7 @@ const NewTrip: React.FC<any> = (props) => {
         }
 
         return true;
-    }
+    };
 
     function resetStates(): void {
         setDestinationError(null);

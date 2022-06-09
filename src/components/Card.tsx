@@ -1,4 +1,4 @@
-import { ICard } from "../models/CardModel"
+import { ICard } from '../models/CardModel';
 import '../styles/card.css';
 
 const Card: React.FC<ICard> = (props: any) => {

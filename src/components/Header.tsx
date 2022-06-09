@@ -1,5 +1,6 @@
+import React, { Component }  from 'react';
 import '../styles/header.css';
-import Logo from "./Logo";
+import Logo from './Logo';
 import NavigationHelper, { NavigationRoutes } from '../helpers/Navigator';
 import LeftIcon from './icons/LeftIcon';
 import { useLocation } from 'react-router-dom';
@@ -27,6 +28,6 @@ const Header = () => {
             <button className="secondary" onClick={logout}>Logout</button>
         </header>
     );
-}
+};
 
 export default Header;

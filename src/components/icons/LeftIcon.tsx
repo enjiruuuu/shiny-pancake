@@ -1,5 +1,5 @@
 import '../../styles/iconBase.css';
-import React from "react";
+import React from 'react';
 
 export default class LeftIcon extends React.Component {
     render() {
