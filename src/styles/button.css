@@ -32,6 +32,13 @@ button.tertiary {
     padding: 0px;
 }
 
+button.tertiary i {
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 2px;
+    margin-right: 20px;
+}
+
 button.icon {
     color: transparent;
     background-color: transparent;

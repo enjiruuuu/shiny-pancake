@@ -8,4 +8,13 @@ export default class GenericHelper {
 
         return date + ' ' + month + ' ' + year;
     }
+
+    public static toggleScroll(): void {
+        if(document.body.style.overflow == 'hidden') {
+            document.body.style.overflow = 'scroll';
+        }
+        else {
+            document.body.style.overflow = 'hidden';
+        }
+    }
 }

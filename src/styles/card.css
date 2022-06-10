@@ -1,5 +1,5 @@
 .c_card {
-    z-index: 3;
+    z-index: 100;
     position: absolute;
     width: 380px;
     border-radius: 8px;

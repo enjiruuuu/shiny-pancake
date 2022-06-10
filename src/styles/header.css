@@ -20,10 +20,3 @@ header button.secondary {
     width: 100%;
     margin-left: auto;
 }
-
-header i {
-    display: inline-block;
-    vertical-align: middle;
-    margin-bottom: 2px;
-    margin-right: 20px;
-}
