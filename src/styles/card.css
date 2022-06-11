@@ -1,6 +1,6 @@
 .c_card {
-    z-index: 3;
-    position: absolute;
+    z-index: 100;
+    position: fixed;
     width: 380px;
     border-radius: 8px;
     background-color: #fff;

@@ -15,6 +15,7 @@ export interface ITripData {
     startDate: string;
     tripUuid?: string;
     ownerUuid?: string;
+    refreshTrip?: () => void;
 }
 
 export interface ITripDetails {

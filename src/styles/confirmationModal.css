@@ -1,0 +1,50 @@
+.v_confirmationModal {
+    text-align: center;
+}
+
+.v_confirmationModal .confirmationHeader {
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5rem;
+}
+
+.v_confirmationModal .details {
+    margin-top: 30px;
+}
+
+.v_confirmationModal .details h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5rem;
+}
+
+.v_confirmationModal .details .sub_info {
+    font-size: 0.75rem;
+    line-height: 1.125rem;
+    font-weight: 400;
+    margin-top: 5px;
+}
+
+.v_confirmationModal .details .sub_info span {
+    display: block;
+}
+
+.v_confirmationModal .buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.v_confirmationModal .buttons button {
+    width: 100%;
+    max-width: 83px;
+}
+
+.v_confirmationModal .buttons button:first-child {
+    margin-left: auto;
+}
+
+.v_confirmationModal .buttons button:last-child {
+    margin-right: auto;
+}
