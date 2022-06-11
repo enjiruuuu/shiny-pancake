@@ -1,16 +1,16 @@
-import '../styles/dashboard.css';
 import { useEffect, useState } from 'react';
 import TripApi from '../api/TripApi';
 import Header from '../components/Header';
+import PlusIcon from '../components/icons/PlusIcon';
+import NewTrip from '../components/NewTrip';
+import Overlay from '../components/Overlay';
 import Trip from '../components/Trip';
 import Wrapper from '../components/Wrapper';
 import LoginHelper from '../helpers/LoginHelper';
 import NavigationHelper from '../helpers/Navigator';
 import Constants from '../models/Constants';
 import { ITripData } from '../models/TripModel';
-import PlusIcon from '../components/icons/PlusIcon';
-import Overlay from '../components/Overlay';
-import NewTrip from '../components/NewTrip';
+import '../styles/dashboard.css';
 
 const DashboardPage = () => {
     const navigator: NavigationHelper = new NavigationHelper();
@@ -60,7 +60,7 @@ const DashboardPage = () => {
                         <>
                         {trips.length > 0 &&
                             trips.map(({ city, name, endDate, startDate, tripUuid }) => (
-                                <Trip key={tripUuid} name={name} city={city} startDate={startDate} endDate={endDate} tripUuid={tripUuid}></Trip>
+                                <Trip key={tripUuid} name={name} city={city} startDate={startDate} endDate={endDate} tripUuid={tripUuid} refreshTrip={refreshTrip}></Trip>
                             ))
                         }
                         {trips.length === 0 &&

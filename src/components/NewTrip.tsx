@@ -1,14 +1,14 @@
-import '../styles/newTrip.css';
 import { useState } from 'react';
+import TripApi from '../api/TripApi';
+import InputFieldHelper from '../helpers/InputFieldHelper';
+import Constants from '../models/Constants';
+import { ITripDetails } from '../models/TripModel';
+import '../styles/newTrip.css';
+import { GenericErrorMessages, InputErrorMessages } from '../texts';
 import Card from './Card';
 import Datepicker from './Datepicker';
 import CloseIcon from './icons/CloseIcon';
 import InputField from './InputField';
-import InputFieldHelper from '../helpers/InputFieldHelper';
-import { GenericErrorMessages, GenericSuccessMessages, InputErrorMessages } from '../texts';
-import { ITripDetails } from '../models/TripModel';
-import Constants from '../models/Constants';
-import TripApi from '../api/TripApi';
 
 const NewTrip: React.FC<any> = (props) => {
     const tripApi = new TripApi();
@@ -17,7 +17,6 @@ const NewTrip: React.FC<any> = (props) => {
     const [startDateError, setStartDateError] = useState<string | null>();
     const [endDateError, setEndDateError] = useState<string | null>();
     const [genericError, setGenericError] = useState<string | null>();
-    const [successMessage, setSuccessMessage] = useState<string | null>();
 
     const closeCard = (): void => {
         props.parentCallback();
@@ -46,11 +45,8 @@ const NewTrip: React.FC<any> = (props) => {
         
         tripApi.addTrip(data)
             .then((res: boolean) => {
-                setSuccessMessage(GenericSuccessMessages.TripAdded);
-                setTimeout(() => {
-                    resetStates();
-                    closeCard();
-                }, 1000);
+                resetStates();
+                closeCard();
                 props.refreshTrip();
             })
             .catch(() => {
@@ -75,7 +71,6 @@ const NewTrip: React.FC<any> = (props) => {
         setStartDateError(null);
         setEndDateError(null);
         setGenericError(null);
-        setSuccessMessage(null);
     }
 
     function validateDestination(): boolean {
@@ -125,7 +120,6 @@ const NewTrip: React.FC<any> = (props) => {
                 <Datepicker id="f_startDate" label="Start date" required={true} error={startDateError}></Datepicker>
                 <Datepicker id="f_endDate" label="End date" required={true} error={endDateError}></Datepicker>
                 { genericError ? <span className="error_message">{ genericError }</span> : null }
-                { successMessage ? <span className="success_message">{ successMessage }</span> : null }
                 <button type="submit" className="primary">Submit</button>
             </form>
         </Card>
