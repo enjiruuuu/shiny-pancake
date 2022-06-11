@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import TripApi from '../api/TripApi';
 import InputFieldHelper from '../helpers/InputFieldHelper';
 import Constants from '../models/Constants';
-import { ITripDetails } from '../models/TripModel';
+import { IModifyTrip, ITripDetails } from '../models/TripModel';
 import '../styles/newTrip.css';
 import { GenericErrorMessages, InputErrorMessages } from '../texts';
 import Card from './Card';
@@ -10,7 +10,7 @@ import Datepicker from './Datepicker';
 import CloseIcon from './icons/CloseIcon';
 import InputField from './InputField';
 
-const ModifyTrip: React.FC<any> = (props) => {
+const ModifyTrip: React.FC<IModifyTrip> = (props) => {
     const tripApi = new TripApi();
 
     const [destinationError, setDestinationError] = useState<string | null>();
@@ -19,7 +19,7 @@ const ModifyTrip: React.FC<any> = (props) => {
     const [genericError, setGenericError] = useState<string | null>();
 
     const closeCard = (): void => {
-        props.parentCallback();
+        props.parentCallback?.();
     };
 
     const submitTrip = (e: React.FormEvent): void => {
@@ -48,7 +48,7 @@ const ModifyTrip: React.FC<any> = (props) => {
                 .then(() => {
                     resetStates();
                     closeCard();
-                    props.refreshTrip();
+                    props.refreshTrip?.();
                 })
                 .catch(() => {
                     setGenericError(GenericErrorMessages.SomethingWentWrong);
@@ -61,11 +61,11 @@ const ModifyTrip: React.FC<any> = (props) => {
                 startDate: startDateElm.value,
             };
 
-            tripApi.updateTrip(data, props.tripUuid)
+            tripApi.updateTrip(data, props.tripUuid as string)
                 .then(() => {
                     resetStates();
                     closeCard();
-                    props.refreshTrip();
+                    props.refreshTrip?.();
                 })
                 .catch(() => {
                     setGenericError(GenericErrorMessages.SomethingWentWrong);

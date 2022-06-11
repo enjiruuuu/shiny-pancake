@@ -20,10 +20,18 @@ export interface ITripData {
 
 export interface ITripDetails {
     ownerUuid?: string;
+    tripUuid?: string;
     city?: string;
     title?:string;
-    endDate: string;
-    startDate: string;
+    endDate?: string;
+    startDate?: string;
+}
+
+export interface IModifyTrip extends ITripDetails {
+    header: string;
+    isEdit?: boolean;
+    parentCallback?: () => void;
+    refreshTrip?: () => void;
 }
 
 export interface ICountriesData {
