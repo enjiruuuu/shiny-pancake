@@ -11,6 +11,7 @@ import ConfirmationModal from './ConfirmationModal';
 import BinIcon from './icons/BinIcon';
 import KebabIcon from './icons/KebabIcon';
 import PencilIcon from './icons/PencilIcon';
+import ModifyTrip from './ModifyTrip';
 import Overlay from './Overlay';
 import Popover from './Popover';
 import Wrapper from './Wrapper';
@@ -22,6 +23,7 @@ const Trip: React.FC<ITripData> = (props: ITripData) => {
     const [backgroundImage, setBackgroundImage] = useState<string>('');
     const [isPopoverOpen, setIsPopoverOpen] = useState<boolean>(false);
     const [isDeleteConfirmationOpen, setIsDeleteConfirmationOpen] = useState<boolean>(false);
+    const [isEditTripModalOpen, setIsEditTripModalOpen] = useState<boolean>(false);
     const [genericError, setGenericError] = useState<string | null>();
     
     useEffect(() => {
@@ -74,6 +76,17 @@ const Trip: React.FC<ITripData> = (props: ITripData) => {
                 setGenericError(GenericErrorMessages.SomethingWentWrong);
             });
     }
+
+    function toggleEditModal(): void {
+        const newValue: boolean = !isEditTripModalOpen;
+        setIsEditTripModalOpen(newValue);
+
+        if (newValue) {
+            return setIsPopoverOpen(false);
+        }
+
+        GenericHelper.toggleScroll();
+    }
     
     return(
         <li>
@@ -83,6 +96,15 @@ const Trip: React.FC<ITripData> = (props: ITripData) => {
                     <Wrapper>
                         <Overlay></Overlay>
                         <ConfirmationModal title='Delete this trip?' details={tripDetails()} confirmationText='Delete' parentCallback={toggleDeleteConfirmation} onConfirm={deleteTrip} genericError={genericError as string}></ConfirmationModal>
+                    </Wrapper>
+                }
+            </>
+            <>
+                {
+                    isEditTripModalOpen &&
+                    <Wrapper>
+                        <Overlay></Overlay>
+                        <ModifyTrip city={props.city} title={props.title} startDate={props.startDate} endDate={props.endDate} header="Edit trip ✏️" parentCallback={toggleEditModal} isEdit={true} tripUuid={props.tripUuid} refreshTrip={props.refreshTrip}></ModifyTrip>
                     </Wrapper>
                 }
             </>
@@ -100,7 +122,7 @@ const Trip: React.FC<ITripData> = (props: ITripData) => {
                     <>
                         {isPopoverOpen && 
                             <Popover>
-                                <button className="tertiary"><PencilIcon></PencilIcon><span>Edit</span></button> 
+                                <button className="tertiary" onClick={toggleEditModal}><PencilIcon></PencilIcon><span>Edit</span></button> 
                                 <button className="tertiary" onClick={toggleDeleteConfirmation}><BinIcon></BinIcon><span>Delete</span></button> 
                             </Popover>
                         }

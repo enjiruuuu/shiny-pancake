@@ -10,7 +10,7 @@ const Datepicker: React.FC<IDatePicker> = (props) => {
     return (
         <div className="c_datePicker">
             <label>{props.label}</label>
-            <input id={props.id} type='date' min={getToday()} required={props.required} onChange={props.onChange}></input>
+            <input id={props.id} type='date' min={getToday()} required={props.required} onChange={props.onChange} defaultValue={props.defaultValue}></input>
             <span className="error_message">{props.error}</span>
         </div>
     );

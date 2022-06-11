@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import TripApi from '../api/TripApi';
 import InputFieldHelper from '../helpers/InputFieldHelper';
 import Constants from '../models/Constants';
@@ -10,7 +10,7 @@ import Datepicker from './Datepicker';
 import CloseIcon from './icons/CloseIcon';
 import InputField from './InputField';
 
-const NewTrip: React.FC<any> = (props) => {
+const ModifyTrip: React.FC<any> = (props) => {
     const tripApi = new TripApi();
 
     const [destinationError, setDestinationError] = useState<string | null>();
@@ -22,7 +22,7 @@ const NewTrip: React.FC<any> = (props) => {
         props.parentCallback();
     };
 
-    const createNewTrip = (e: React.FormEvent): void => {
+    const submitTrip = (e: React.FormEvent): void => {
         e.preventDefault();
         resetStates();
         
@@ -35,23 +35,42 @@ const NewTrip: React.FC<any> = (props) => {
         const startDateElm: HTMLInputElement = document.querySelector('#f_startDate') as HTMLInputElement;
         const endDateElm: HTMLInputElement = document.querySelector('#f_endDate') as HTMLInputElement;
 
-        const data: ITripDetails = {
-            ownerUuid: Constants.userUuid as string,
-            city: destinationElm.value,
-            title: titleElm.value,
-            endDate: endDateElm.value,
-            startDate: startDateElm.value,
-        };
-        
-        tripApi.addTrip(data)
-            .then((res: boolean) => {
-                resetStates();
-                closeCard();
-                props.refreshTrip();
-            })
-            .catch(() => {
-                setGenericError(GenericErrorMessages.SomethingWentWrong);
-            });
+        if (!props.isEdit) {
+            const data: ITripDetails = {
+                ownerUuid: Constants.userUuid as string,
+                city: destinationElm.value,
+                title: titleElm.value,
+                endDate: endDateElm.value,
+                startDate: startDateElm.value,
+            };
+
+            tripApi.addTrip(data)
+                .then(() => {
+                    resetStates();
+                    closeCard();
+                    props.refreshTrip();
+                })
+                .catch(() => {
+                    setGenericError(GenericErrorMessages.SomethingWentWrong);
+                });
+        }
+        else {
+            const data: ITripDetails = {
+                title: titleElm.value,
+                endDate: endDateElm.value,
+                startDate: startDateElm.value,
+            };
+
+            tripApi.updateTrip(data, props.tripUuid)
+                .then(() => {
+                    resetStates();
+                    closeCard();
+                    props.refreshTrip();
+                })
+                .catch(() => {
+                    setGenericError(GenericErrorMessages.SomethingWentWrong);
+                });
+        }
     };
 
     const validateFields = (): boolean => {
@@ -110,15 +129,15 @@ const NewTrip: React.FC<any> = (props) => {
         <div className="v_newTrip">
             <Card>
             <div className="card_header">
-                <h2>Create new trip  🎉</h2>
+                <h2>{props.header}</h2>
                 <button className="icon" onClick={closeCard}><CloseIcon></CloseIcon></button>
             </div>
 
-            <form onSubmit={createNewTrip} noValidate>
-                <InputField id="f_destination" label="Destination" type="text" placeholder="Start typing here..." required={true} error={destinationError}></InputField>
-                <InputField id="f_tripTitle" label="Custom trip title (optional)" type="text" placeholder="Type here"></InputField>
-                <Datepicker id="f_startDate" label="Start date" required={true} error={startDateError}></Datepicker>
-                <Datepicker id="f_endDate" label="End date" required={true} error={endDateError}></Datepicker>
+            <form onSubmit={submitTrip} noValidate>
+                <InputField id="f_destination" label="Destination" type="text" placeholder="Start typing here..." required={true} error={destinationError} defaultValue={props.city} disabled={props.isEdit}></InputField>
+                <InputField id="f_tripTitle" label="Custom trip title (optional)" type="text" placeholder="Type here" defaultValue={props.title}></InputField>
+                <Datepicker id="f_startDate" label="Start date" required={true} error={startDateError} defaultValue={props.startDate}></Datepicker>
+                <Datepicker id="f_endDate" label="End date" required={true} error={endDateError} defaultValue={props.endDate}></Datepicker>
                 { genericError ? <span className="error_message">{ genericError }</span> : null }
                 <button type="submit" className="primary">Submit</button>
             </form>
@@ -127,4 +146,4 @@ const NewTrip: React.FC<any> = (props) => {
     );
 };
 
-export default NewTrip;
+export default ModifyTrip;

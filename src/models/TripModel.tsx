@@ -19,8 +19,8 @@ export interface ITripData {
 }
 
 export interface ITripDetails {
-    ownerUuid: string;
-    city: string;
+    ownerUuid?: string;
+    city?: string;
     title?:string;
     endDate: string;
     startDate: string;

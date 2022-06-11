@@ -28,3 +28,7 @@
     margin-top: 6px;
     display: block;
 }
+
+.c_inputField input:disabled {
+    background-color: rgba(213, 218, 225, 0.3);
+}
