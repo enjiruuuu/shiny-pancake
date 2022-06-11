@@ -27,6 +27,17 @@ export default class TripApi {
         }
     }
 
+    public async updateTrip(data: ITripDetails, tripUuid: string): Promise<boolean> {
+        const res = await axios.patch(Constants.baseUrl + '/trips/'+ tripUuid + '/user/'+ Constants.userUuid +'/update', data);
+        const response: IAddTripResponse = res.data;
+        if (response.httpStatusCode === HttpStatusCodes.SUCCESS) {
+            return true;
+        }
+        else {
+            throw new Error();
+        }
+    }
+
     public async deleteTrip(tripUuid: string, userUuid: string): Promise<boolean> {
         const res = await axios.delete(Constants.baseUrl + '/trips/' + tripUuid + '/user/' + userUuid + '/delete');
         const response: IAddTripResponse = res.data;

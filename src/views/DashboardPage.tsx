@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react';
 import TripApi from '../api/TripApi';
 import Header from '../components/Header';
 import PlusIcon from '../components/icons/PlusIcon';
-import NewTrip from '../components/NewTrip';
+import ModifyTrip from '../components/ModifyTrip';
 import Overlay from '../components/Overlay';
 import Trip from '../components/Trip';
 import Wrapper from '../components/Wrapper';
+import GenericHelper from '../helpers/GenericHelper';
 import LoginHelper from '../helpers/LoginHelper';
 import NavigationHelper from '../helpers/Navigator';
 import Constants from '../models/Constants';
@@ -30,12 +31,21 @@ const DashboardPage = () => {
         });
     }, []);
 
+    function toggleNewTrip(): void {
+        const newValue: boolean = !isCreatingNewTrip;
+        setIsCreatingNewTrip(newValue);
+
+        GenericHelper.toggleScroll();
+    }
+
     const openNewTrip = (): void => {
         setIsCreatingNewTrip(true);
+        GenericHelper.toggleScroll();
     };
 
     const closeNewTrip = (): void => {
         setIsCreatingNewTrip(false);
+        GenericHelper.toggleScroll();
     };
 
     const refreshTrip = ():void => {
@@ -78,7 +88,7 @@ const DashboardPage = () => {
                 isCreatingNewTrip ? 
                     <Wrapper>
                         <Overlay></Overlay>
-                        <NewTrip parentCallback = { closeNewTrip } refreshTrip = { refreshTrip }></NewTrip>
+                        <ModifyTrip parentCallback = { closeNewTrip } refreshTrip = { refreshTrip } header="Create new trip  🎉"></ModifyTrip>
                     </Wrapper>
                 : null
             }
