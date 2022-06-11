@@ -10,7 +10,7 @@ export interface IAddTripResponse {
 
 export interface ITripData {
     city: string;
-    name?: string;
+    title?: string;
     endDate: string;
     startDate: string;
     tripUuid?: string;
@@ -21,7 +21,7 @@ export interface ITripData {
 export interface ITripDetails {
     ownerUuid: string;
     city: string;
-    name?:string;
+    title?:string;
     endDate: string;
     startDate: string;
 }

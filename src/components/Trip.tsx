@@ -15,7 +15,7 @@ import Overlay from './Overlay';
 import Popover from './Popover';
 import Wrapper from './Wrapper';
 
-const Trip: React.FC<ITripData> = (props: any) => {
+const Trip: React.FC<ITripData> = (props: ITripData) => {
     const tripApi = new TripApi();
     const navigator: NavigationHelper = new NavigationHelper();
     
@@ -31,7 +31,7 @@ const Trip: React.FC<ITripData> = (props: any) => {
     },[backgroundImage, props.city]);
 
     function navigateToTripDetails(): void {
-        navigator.tripDetails(props.tripUuid);
+        navigator.tripDetails(props.tripUuid as string);
     }
 
     function togglePopover(): void {
@@ -54,9 +54,9 @@ const Trip: React.FC<ITripData> = (props: any) => {
     function tripDetails(): JSX.Element {
         return (
             <Wrapper>
-                <h4>{props.name ? props.name : props.city}</h4>
+                <h4>{props.title ? props.title : props.city}</h4>
                 <div className="sub_info">
-                    {props.name ? <span className='city'>{props.city}</span> : null}
+                    {props.title ? <span className='city'>{props.city}</span> : null}
                     <span>{GenericHelper.formatDate(new Date(props.startDate))} - {GenericHelper.formatDate(new Date(props.endDate))}</span>
                 </div>
             </Wrapper>
@@ -64,20 +64,15 @@ const Trip: React.FC<ITripData> = (props: any) => {
     }
 
     function deleteTrip(): void {
-        tripApi.deleteTrip(props.tripUuid, Constants.userUuid)
+        tripApi.deleteTrip(props.tripUuid as string, Constants.userUuid)
             .then((res: boolean) => {
                 toggleDeleteConfirmation();
                 setGenericError(null);
-                props.refreshTrip();
+                props.refreshTrip?.();
             })
             .catch(() => {
                 setGenericError(GenericErrorMessages.SomethingWentWrong);
             });
-    }
-
-    function resetStates(): void {
-        setIsPopoverOpen(false);
-        setIsDeleteConfirmationOpen(false);
     }
     
     return(
@@ -112,9 +107,9 @@ const Trip: React.FC<ITripData> = (props: any) => {
                     </>
                 </div>
                 <div className='info'>
-                    <h4>{props.name ? props.name : props.city}</h4>
+                    <h4>{props.title ? props.title : props.city}</h4>
                     <div className="sub_info">
-                        {props.name ? <span className='city'>{props.city}</span> : null}
+                        {props.title ? <span className='city'>{props.city}</span> : null}
                         <span>{GenericHelper.formatDate(new Date(props.startDate))} - {GenericHelper.formatDate(new Date(props.endDate))}</span>
                     </div>
                 </div>
