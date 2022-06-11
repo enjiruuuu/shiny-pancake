@@ -38,7 +38,7 @@ const NewTrip: React.FC<any> = (props) => {
         const data: ITripDetails = {
             ownerUuid: Constants.userUuid as string,
             city: destinationElm.value,
-            name: titleElm.value,
+            title: titleElm.value,
             endDate: endDateElm.value,
             startDate: startDateElm.value,
         };
