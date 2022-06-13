@@ -1,0 +1,37 @@
+.c_asyncDropdown .react-select__control {
+    font-size: 0.83125rem;
+    border: 1px solid #D5DAE1;
+    color: #667085;
+    border-radius: 8px;
+    width: 100%;
+    padding: 10px 14px;
+    margin-top: 6px;
+}
+
+.c_asyncDropdown .react-select__menu {
+    font-size: 0.83125rem;
+}
+
+.c_asyncDropdown .react-select__value-container {
+    padding: 0px;
+    margin: 0px;
+}
+
+.c_asyncDropdown .react-select__indicator {
+    padding: 0px;
+    padding-left: 8px;
+}
+
+.c_asyncDropdown .react-select__indicator svg {
+    fill: #000000;
+    width: 18px;
+}
+
+.c_asyncDropdown label {
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5rem;
+    color: #333F51;
+    display: block;
+    width: 100%;
+}

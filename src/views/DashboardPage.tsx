@@ -31,13 +31,6 @@ const DashboardPage = () => {
         });
     }, []);
 
-    function toggleNewTrip(): void {
-        const newValue: boolean = !isCreatingNewTrip;
-        setIsCreatingNewTrip(newValue);
-
-        GenericHelper.toggleScroll();
-    }
-
     const openNewTrip = (): void => {
         setIsCreatingNewTrip(true);
         GenericHelper.toggleScroll();

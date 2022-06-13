@@ -1,7 +1,0 @@
-.v_newTrip .c_inputField + .c_inputField, .v_newTrip .c_inputField + .c_datePicker, .v_newTrip .c_datePicker + .c_datePicker {
-    margin-top: 30px;
-}
-
-.v_newTrip button[type="submit"] {
-    margin-top: 30px;
-}

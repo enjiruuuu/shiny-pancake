@@ -35,9 +35,10 @@ export interface IModifyTrip extends ITripDetails {
 }
 
 export interface ICountriesData {
-    country: string;
     city: string;
     image: string;
+    value?: string;
+    label?: string;
 }
 
 export interface ICountriesObject {
