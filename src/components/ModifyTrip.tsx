@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import TripApi from '../api/TripApi';
+import { Countries, DefaultCountries } from '../countries';
 import InputFieldHelper from '../helpers/InputFieldHelper';
 import Constants from '../models/Constants';
 import { IModifyTrip, ITripDetails } from '../models/TripModel';
-import '../styles/newTrip.css';
+import '../styles/modifyTrip.css';
 import { GenericErrorMessages, InputErrorMessages } from '../texts';
+import AsyncDropdown from './AsyncDropdown';
 import Card from './Card';
 import Datepicker from './Datepicker';
 import CloseIcon from './icons/CloseIcon';
@@ -30,7 +32,7 @@ const ModifyTrip: React.FC<IModifyTrip> = (props) => {
             return;
         }
 
-        const destinationElm: HTMLInputElement = document.querySelector('#f_destination') as HTMLInputElement;
+        const destinationElm: HTMLInputElement = document.querySelector('#f_destination .react-select__single-value') as HTMLInputElement;
         const titleElm: HTMLInputElement = document.querySelector('#f_tripTitle') as HTMLInputElement;
         const startDateElm: HTMLInputElement = document.querySelector('#f_startDate') as HTMLInputElement;
         const endDateElm: HTMLInputElement = document.querySelector('#f_endDate') as HTMLInputElement;
@@ -38,7 +40,7 @@ const ModifyTrip: React.FC<IModifyTrip> = (props) => {
         if (!props.isEdit) {
             const data: ITripDetails = {
                 ownerUuid: Constants.userUuid as string,
-                city: destinationElm.value,
+                city: destinationElm.innerText,
                 title: titleElm.value,
                 endDate: endDateElm.value,
                 startDate: startDateElm.value,
@@ -93,8 +95,8 @@ const ModifyTrip: React.FC<IModifyTrip> = (props) => {
     }
 
     function validateDestination(): boolean {
-        const elm: HTMLInputElement = document.querySelector('#f_destination') as HTMLInputElement;
-        if (InputFieldHelper.checkIfEmpty(elm)) {
+        const elm: HTMLInputElement = document.querySelector('#f_destination .react-select__single-value') as HTMLInputElement;
+        if (elm === undefined || elm === null) {
             setDestinationError(InputErrorMessages.FieldEmpty);
             return false;
         }
@@ -134,7 +136,7 @@ const ModifyTrip: React.FC<IModifyTrip> = (props) => {
             </div>
 
             <form onSubmit={submitTrip} noValidate>
-                <InputField id="f_destination" label="Destination" type="text" placeholder="Start typing here..." required={true} error={destinationError} defaultValue={props.city} disabled={props.isEdit}></InputField>
+                <AsyncDropdown data={Countries} id="f_destination" label="Destination" type="text" placeholder="Start typing here..." required={true} error={destinationError} defaultValue={props.city} isEdit={props.isEdit} defaultOptions={DefaultCountries}></AsyncDropdown>
                 <InputField id="f_tripTitle" label="Custom trip title (optional)" type="text" placeholder="Type here" defaultValue={props.title}></InputField>
                 <Datepicker id="f_startDate" label="Start date" required={true} error={startDateError} defaultValue={props.startDate}></Datepicker>
                 <Datepicker id="f_endDate" label="End date" required={true} error={endDateError} defaultValue={props.endDate}></Datepicker>

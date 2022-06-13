@@ -28,7 +28,10 @@ const Trip: React.FC<ITripData> = (props: ITripData) => {
     
     useEffect(() => {
         if (backgroundImage === '') {
-            setBackgroundImage(Countries[props.city].image);
+            const cityObject = GenericHelper.binarySearchCountries(Countries, props.city);
+            if (!!cityObject) {
+                setBackgroundImage(cityObject.image);
+            }
         }
     },[backgroundImage, props.city]);
 
@@ -50,7 +53,6 @@ const Trip: React.FC<ITripData> = (props: ITripData) => {
         }
 
         GenericHelper.toggleScroll();
-        
     }
 
     function tripDetails(): JSX.Element {
@@ -104,7 +106,7 @@ const Trip: React.FC<ITripData> = (props: ITripData) => {
                     isEditTripModalOpen &&
                     <Wrapper>
                         <Overlay></Overlay>
-                        <ModifyTrip city={props.city} title={props.title} startDate={props.startDate} endDate={props.endDate} header="Edit trip ✏️" parentCallback={toggleEditModal} isEdit={true} tripUuid={props.tripUuid} refreshTrip={props.refreshTrip}></ModifyTrip>
+                        <ModifyTrip city={GenericHelper.binarySearchCountries(Countries, props.city)} title={props.title} startDate={props.startDate} endDate={props.endDate} header="Edit trip ✏️" parentCallback={toggleEditModal} isEdit={true} tripUuid={props.tripUuid} refreshTrip={props.refreshTrip}></ModifyTrip>
                     </Wrapper>
                 }
             </>
