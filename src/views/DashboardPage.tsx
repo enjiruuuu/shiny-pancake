@@ -50,13 +50,13 @@ const DashboardPage = () => {
     return (
         <Wrapper>
             <Header></Header>
-            <main>
+            <main className='v_dashboard'>
                 <h1>Hello, {userName}! 👋</h1>
                 <div>
                     {trips.length > 0 &&
                         <div className='dashboard_header'>
                             <h2>Your trips</h2>
-                            <button className="tertiary" onClick={openNewTrip}><span>Create new trip</span><PlusIcon></PlusIcon></button>
+                            <button className="tertiary" onClick={openNewTrip}><span>Create new trip</span><PlusIcon fill="#22C55E"></PlusIcon></button>
                         </div>
                     }
                     <ul className="c_trips">

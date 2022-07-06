@@ -15,6 +15,17 @@ export default class TripApi {
         return [];
     }
 
+    public async getSpecificTrip(userUuid: string, tripUuid: string): Promise<ITripData | null> {
+        const res = await axios.get(Constants.baseUrl + '/users/'+ userUuid +'/trips/' + tripUuid);
+        const response = res.data;
+
+        if (response.httpStatusCode === HttpStatusCodes.SUCCESS) {
+            return response.data;
+        }
+
+        return null;
+    }
+
     public async addTrip(data: ITripDetails): Promise<boolean> {
         const res = await axios.put(Constants.baseUrl + '/trips/create', data);
         const response: IAddTripResponse = res.data;

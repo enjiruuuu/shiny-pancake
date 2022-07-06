@@ -1,0 +1,62 @@
+.c_sideBar .c_listCard .listCard_content .c_place {
+    color: #373E6E;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+.c_sideBar .c_listCard .listCard_content .c_place > div {
+    width: calc(100% - 96px);
+    padding-left: 20px;
+    align-content: center;
+    vertical-align: middle;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.c_sideBar .c_listCard .listCard_content .c_place > div * {
+    width: 100%;
+}
+
+.c_sideBar .c_listCard .listCard_content .c_place .info {
+    font-size: 0.75rem;
+    line-height: 1.125rem;
+    font-weight: 400;
+}
+
+.c_sideBar .c_listCard .listCard_content .c_place .info span {
+    display: block;
+}
+
+.c_sideBar .c_listCard .listCard_content .c_place .image {
+    width: 76px;
+    height: 76px;
+    border-radius: 6px;
+}
+
+.c_sideBar .c_listCard .listCard_content .c_place + .c_place {
+    padding-top: 20px;
+    border-top: 1px solid #F0FDF4;
+}
+
+.c_sideBar .c_listCard .listCard_content .c_place:not(:last-child) {
+    padding-bottom: 20px;
+}
+
+.c_place .image {
+    width: 76px;
+    height: 76px;
+    background-color: #f00;
+    border-radius: 6px;
+    align-self: center;
+}
+
+.c_place .info {
+    margin-top: 5px;
+}
+
+.c_place .info .span.description {
+    margin-bottom: 3px;
+    display: block;
+}

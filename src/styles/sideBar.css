@@ -1,0 +1,74 @@
+.c_sideBar {
+    background: #373E6E;
+    height: 100%;
+    width: 31%;
+    padding: 40px 50px;
+    color: #F0FDF4;
+    overflow: scroll;
+}
+
+.c_sideBar .c_inputField label {
+    color: #F0FDF4;
+}
+
+.c_sideBar h1 {
+    font-size: 2.25rem;
+    line-height: 2.75rem;
+    color: #F0FDF4;
+    margin-bottom: 5px;
+    width: calc(100% - 50px);
+}
+
+.c_sideBar .sideBar_header {
+    position: relative;
+}
+
+.c_sideBar .sideBar_header button.icon {
+    position: absolute;
+    top: 15px;
+    right: 0;
+}
+
+.c_sideBar .sideBar_header span {
+    display: block;
+}
+
+.c_sideBar .sideBar_content {
+    margin-top: 40px;
+}
+
+.c_sideBar .image {
+    height: 100%;
+    width: 100px;
+    background-image: url("https://a.cdn-hotels.com/gdcs/production143/d1112/c4fedab1-4041-4db5-9245-97439472cf2c.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.c_sideBar .lists .c_listCard + .c_listCard {
+    margin-top: 30px;
+}
+
+.c_sideBar .lists_header {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.c_sideBar .lists_header button.tertiary {
+    margin-left: auto;
+    color: #F0FDF4;
+}
+
+.c_sideBar .lists_header button.tertiary i {
+    margin-right: 0px;
+    margin-left: 8px;
+}
+
+.c_sideBar .c_lists {
+    margin-top: 40px;
+}
+
+.c_sideBar .c_lists .lists_header {
+    margin-bottom: 20px;
+}

@@ -1,3 +1,4 @@
+
 export default class GenericHelper {
     public static formatDate(inputDate: Date): string {
         const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];

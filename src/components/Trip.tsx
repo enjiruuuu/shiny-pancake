@@ -35,6 +35,14 @@ const Trip: React.FC<ITripData> = (props: ITripData) => {
         }
     },[backgroundImage, props.city]);
 
+    function startDate(): string {
+        return GenericHelper.formatDate(new Date(props.startDate));
+    }
+
+    function endDate(): string {
+        return GenericHelper.formatDate(new Date(props.endDate));
+    }
+
     function navigateToTripDetails(): void {
         navigator.tripDetails(props.tripUuid as string);
     }
@@ -61,7 +69,7 @@ const Trip: React.FC<ITripData> = (props: ITripData) => {
                 <h4>{props.title ? props.title : props.city}</h4>
                 <div className="sub_info">
                     {props.title ? <span className='city'>{props.city}</span> : null}
-                    <span>{GenericHelper.formatDate(new Date(props.startDate))} - {GenericHelper.formatDate(new Date(props.endDate))}</span>
+                    <span>{startDate()} - {endDate()}</span>
                 </div>
             </Wrapper>
         );
@@ -124,7 +132,7 @@ const Trip: React.FC<ITripData> = (props: ITripData) => {
                     <>
                         {isPopoverOpen && 
                             <Popover>
-                                <button className="tertiary" onClick={toggleEditModal}><PencilIcon></PencilIcon><span>Edit</span></button> 
+                                <button className="tertiary" onClick={toggleEditModal}><PencilIcon fill='#333F51'></PencilIcon><span>Edit</span></button> 
                                 <button className="tertiary" onClick={toggleDeleteConfirmation}><BinIcon></BinIcon><span>Delete</span></button> 
                             </Popover>
                         }
@@ -134,7 +142,7 @@ const Trip: React.FC<ITripData> = (props: ITripData) => {
                     <h4>{props.title ? props.title : props.city}</h4>
                     <div className="sub_info">
                         {props.title ? <span className='city'>{props.city}</span> : null}
-                        <span>{GenericHelper.formatDate(new Date(props.startDate))} - {GenericHelper.formatDate(new Date(props.endDate))}</span>
+                        <span>{startDate()} - {endDate()}</span>
                     </div>
                 </div>
             </div>

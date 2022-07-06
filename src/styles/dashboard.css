@@ -1,14 +1,14 @@
-main {
+main.v_dashboard {
     padding: 48px 150px 150px 150px;
 }
 
-main h2 {
+main.v_dashboard h2 {
     font-size: 1.5rem;
     line-height: 2rem;
     font-weight: 400;
 }
 
-main .empty_trip_container {
+main.v_dashboard .empty_trip_container {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -16,7 +16,7 @@ main .empty_trip_container {
     transform: translate(-50%, -50%);
 }
 
-main .empty_trip_container h2 {
+main.v_dashboard .empty_trip_container h2 {
     margin-bottom: 30px;
 }
 
